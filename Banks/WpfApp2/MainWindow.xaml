@@ -1,0 +1,366 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:Btns="clr-namespace:Btns;assembly=Btns" x:Class="WpfApp2.MainWindow"
+        mc:Ignorable="d"
+        MinHeight="412"
+        MinWidth="660"
+        Title="מזימת הבנקים" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="main">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF3B0ABD" Offset="0"/>
+                <GradientStop Color="#FF9C3153" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <!--תפריט צד-->
+        <Rectangle Height="200" Width="122" HorizontalAlignment="Right" Stroke="#FFFFAE00" StrokeThickness="3" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5D00FF" Offset="0"/>
+                    <GradientStop Color="#FF888D14" Offset="0.908"/>
+                    <GradientStop Color="#FF0AA3B2" Offset="0.337"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Btns:AnimButton HorizontalAlignment="Right" Height="100" Margin="0,-10,10,0" VerticalAlignment="Top" Width="100" Text="בית    " AnimTime="150" MouseDown="AnimButton_MouseDown_2"/>
+        <Btns:AnimButton HorizontalAlignment="Right" Height="100" Margin="0,46,10,0" VerticalAlignment="Top" Width="100" Text="בנקים   " AnimTime="150" MouseDown="AnimButton_MouseDown"/>
+        <Btns:AnimButton HorizontalAlignment="Right" Height="100" Margin="0,103,10,0" VerticalAlignment="Top" Width="100" Text="תנועות  " AnimTime="150" MouseDown="AnimButton_MouseDown_3"/>
+        <!---->
+
+        <!--מסך הבית-->
+        <Grid x:Name="homeGrid" Visibility="Visible" IsEnabled="False">
+            <Label FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Content="ברוכים הבאים למזימת הבנקים הגדולה"/>
+        </Grid>
+        <!---->
+
+        <!--מסך הבנקים-->
+        <Grid x:Name="banksGrid" Visibility="Hidden"  IsEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="0">
+            <Label x:Name="banksCount" Height="30" Width="70" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-155" X="22"/>
+                    </TransformGroup>
+                </Label.RenderTransform> 0:כמות
+            </Label>
+            <Label Width="72" Height="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="91" Y="-130"/>
+                    </TransformGroup>
+                </Label.RenderTransform> :שם הבנק
+            </Label>
+            <TextBox x:Name="bankNameBox" TextAlignment="Right" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-130" X="-1"/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Btns:AnimButton Text="הוסף   " AnimTime="150" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,0.5" MouseDown="AnimButton_MouseDown_1">
+                <Btns:AnimButton.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-110" Y="-130"/>
+                    </TransformGroup>
+                </Btns:AnimButton.RenderTransform>
+            </Btns:AnimButton>
+            <ScrollViewer Width="400" Height="200">
+                <StackPanel x:Name="banksStack" Background="#FF898989">
+                    <Grid>
+                        <Label HorizontalAlignment="Right" FontSize="16">מזהה</Label>
+                        <Label HorizontalAlignment="Right" Margin="0,0,130,0" FontSize="16">שם</Label>
+                        <Label HorizontalAlignment="Right" Margin="0,0,250,0" FontSize="16">נכנס</Label>
+                        <Label HorizontalAlignment="Right" Margin="0,0,303,0" FontSize="16">יוצא</Label>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!---->
+
+        <!--מסך התנועות-->
+        <Grid x:Name="movesGrid" Visibility="Hidden" IsEnabled="False" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-2"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <!-- חיפוש ויצירת תנועה חדשה-->
+            <Rectangle Width="500" Height="130" Fill="#FF979797" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-119" X="-51"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="153" Y="-169"/>
+                    </TransformGroup>
+                </Label.RenderTransform> יוצא
+            </Label>
+            <ComboBox x:Name="moveOut" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="30" RenderTransformOrigin="0.5,0.5">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-138" X="152"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+            </ComboBox>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-169" X="59"/>
+                    </TransformGroup>
+                </Label.RenderTransform> סכום
+            </Label>
+            <TextBox x:Name="moveSum" FontSize="20" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="30" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="60" Y="-138"/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-37" Y="-169"/>
+                    </TransformGroup>
+                </Label.RenderTransform> נכנס
+            </Label>
+            <ComboBox x:Name="moveIn" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="30" RenderTransformOrigin="0.5,0.5">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-138" X="-31"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+            </ComboBox>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-129" Y="-169"/>
+                    </TransformGroup>
+                </Label.RenderTransform> תאריך
+            </Label>
+            <DatePicker x:Name="moveDate" Height="30" Width="90" RenderTransformOrigin="0.5,0.5">
+                <DatePicker.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-122" Y="-138"/>
+                    </TransformGroup>
+                </DatePicker.RenderTransform>
+            </DatePicker>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-169" X="-212"/>
+                    </TransformGroup>
+                </Label.RenderTransform> שם
+            </Label>
+            <TextBox TextAlignment="Right" x:Name="moveName" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="30" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-213" Y="-138"/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-275" Y="-169"/>
+                    </TransformGroup>
+                </Label.RenderTransform> משתנה
+            </Label>
+            <CheckBox x:Name="moveVar" Width="15" Height="15" RenderTransformOrigin="0.5,0.5">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-277" Y="-141"/>
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <Label x:Name="moveCountBasic" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-113" X="167"/>
+                    </TransformGroup>
+                </Label.RenderTransform> 0:רגילות
+            </Label>
+            <Label x:Name="moveCountVar" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-92" X="167"/>
+                    </TransformGroup>
+                </Label.RenderTransform>0:משתנות
+            </Label>
+            <Label x:Name="moveCountTotal" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-71" X="167"/>
+                    </TransformGroup>
+                </Label.RenderTransform>0:כולל
+            </Label>
+            <Btns:AnimButton Text="צור   " AnimTime="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,0.5" MouseDown="CreateMove">
+                <Btns:AnimButton.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="8" Y="-88"/>
+                    </TransformGroup>
+                </Btns:AnimButton.RenderTransform>
+            </Btns:AnimButton>
+            <Btns:AnimButton Text="חפש   " AnimTime="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,0.5" MouseDown="SearchMove">
+                <Btns:AnimButton.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-97" Y="-88"/>
+                    </TransformGroup>
+                </Btns:AnimButton.RenderTransform>
+            </Btns:AnimButton>
+
+            <!---->
+
+            <!--הצגת תנועות-->
+            <Rectangle Width="500" Height="240" Fill="#FF979797" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="70" X="-51"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-37" X="-43"/>
+                    </TransformGroup>
+                </Label.RenderTransform> תנועות
+            </Label>
+            <Button Width="80" Height="30" Content="נקה סינון" RenderTransformOrigin="0.5,0.5" Click="Button_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="156" Y="-29"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <ScrollViewer Width="500" Height="200" RenderTransformOrigin="0.5,0.5">
+                <ScrollViewer.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="90" X="-51"/>
+                    </TransformGroup>
+                </ScrollViewer.RenderTransform>
+                <StackPanel x:Name="movesStack" Background="#FF898989">
+                    <Grid HorizontalAlignment="Right">
+                        <Label Foreground="White" FontSize="16" Margin="20,0,-30,0">
+                            מזהה
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-49,0,59,0" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="12"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                            תאריך
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-100,0,118,0">
+                            שם
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-170,0,190,0">
+                            יוצא
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-255,0,259,0">
+                            נכנס
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-327,0,327,0">
+                            סכום
+                        </Label>
+                        <Label Foreground="White" FontSize="16" Margin="-415,0,405,0">
+                            משתנה
+                        </Label>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!---->
+    </Grid>
+</Window>
